@@ -1,0 +1,15 @@
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/LogFilter.csproj.AssemblyReference.cache
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/LogFilter.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/LogFilter.AssemblyInfoInputs.cache
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/LogFilter.AssemblyInfo.cs
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/LogFilter.csproj.CoreCompileInputs.cache
+/Users/bartek/Desktop/Studia/PP/LogFilter/bin/Debug/net6.0/LogFilter
+/Users/bartek/Desktop/Studia/PP/LogFilter/bin/Debug/net6.0/LogFilter.deps.json
+/Users/bartek/Desktop/Studia/PP/LogFilter/bin/Debug/net6.0/LogFilter.runtimeconfig.json
+/Users/bartek/Desktop/Studia/PP/LogFilter/bin/Debug/net6.0/LogFilter.dll
+/Users/bartek/Desktop/Studia/PP/LogFilter/bin/Debug/net6.0/ref/LogFilter.dll
+/Users/bartek/Desktop/Studia/PP/LogFilter/bin/Debug/net6.0/LogFilter.pdb
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/LogFilter.dll
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/ref/LogFilter.dll
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/LogFilter.pdb
+/Users/bartek/Desktop/Studia/PP/LogFilter/obj/Debug/net6.0/LogFilter.genruntimeconfig.cache
