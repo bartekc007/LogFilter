@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LogFilter.entities;
 
 namespace LogFilter.Services
 {
     static public class LogDetector
     {
+        public static Dictionary<string, List<Auth>> UserAttempts = new Dictionary<string, List<Auth>>();
         public static void AnalyzeUserAccountAttacks(List<Auth> logData, int maxAttempts, int timeWindowInSeconds)
         {
             // Sortowanie danych po czasie
@@ -19,26 +16,24 @@ namespace LogFilter.Services
             var currentSlotStartTime = logData[0].Time;
             var currentSlotEndTime = currentSlotStartTime + timeSlotSize;
 
-            var userAttempts = new Dictionary<string, List<Auth>>();
-
             foreach (var logEntry in logData)
             {
                 var currentTime = logEntry.Time;
 
                 if (currentTime >= currentSlotStartTime && currentTime <= currentSlotEndTime)
                 {
-                    if (!userAttempts.ContainsKey(logEntry.SourceUserDomain))
+                    if (!UserAttempts.ContainsKey(logEntry.SourceUserDomain))
                     {
-                        userAttempts[logEntry.SourceUserDomain] = new List<Auth>();
+                        UserAttempts[logEntry.SourceUserDomain] = new List<Auth>();
                     }
 
-                    userAttempts[logEntry.SourceUserDomain].Add(logEntry);
+                    UserAttempts[logEntry.SourceUserDomain].Add(logEntry);
                 }
                 else
                 {
-                    foreach (var userDomain in userAttempts.Keys)
+                    foreach (var userDomain in UserAttempts.Keys)
                     {
-                        var attempts = userAttempts[userDomain];
+                        var attempts = UserAttempts[userDomain];
 
                         if (attempts.Count > maxAttempts)
                         {
@@ -49,7 +44,7 @@ namespace LogFilter.Services
                     // Przejdź do kolejnego szeregu czasowego
                     currentSlotStartTime += 1;
                     currentSlotEndTime += 1;
-                    userAttempts.Clear();
+                    UserAttempts.Clear();
 
                     // Przesuń się do następnego szeregu czasowego
                     while (currentTime > currentSlotEndTime)
@@ -58,12 +53,12 @@ namespace LogFilter.Services
                         currentSlotEndTime += 1;
                     }
 
-                    if (!userAttempts.ContainsKey(logEntry.SourceUserDomain))
+                    if (!UserAttempts.ContainsKey(logEntry.SourceUserDomain))
                     {
-                        userAttempts[logEntry.SourceUserDomain] = new List<Auth>();
+                        UserAttempts[logEntry.SourceUserDomain] = new List<Auth>();
                     }
 
-                    userAttempts[logEntry.SourceUserDomain].Add(logEntry);
+                    UserAttempts[logEntry.SourceUserDomain].Add(logEntry);
                 }
             }
         }

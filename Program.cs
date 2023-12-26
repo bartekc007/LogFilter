@@ -1,25 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using LogFilter.entities;
-using System;
-using LogFilter.Services;
+﻿using LogFilter.Services;
 
+//1. Analiza statystyczna logów na jednej porcji danych:
+// 1.1 Ile średnio eventów dzieje się w jakichś ramach czasowych
+// 1.2 Ile średnio eventów jednego uzytkownika dzieje się w jakichś ramach czasowych
 
-
-//1. Pobranie i zmapowanie danych
-
-//2. Analiza statystyczna logów:
-// 2.1 Ile średnio eventów dzieje się w jakichś ramach czasowych
-// 2.2 Ile średnio eventów jednego uzytkownika dzieje się w jakichś ramach czasowych
-
-
-// 3. Na podstawie analizy określamy róne TimeWindow per konkretny atak
-
-// 4. Przeprowadzamy analize logów
-string filePath = "data/auth.txt";
-var authList = FileService.DownloadDataFromFile(filePath);
-
-LogDetector.AnalyzeUserAccountAttacks(authList,3,5);
-
+//2. Pobranie i zmapowanie danych
+int dataSetIndex = 1;
+foreach (var batch in FileService.DownloadDataInBatches("data/auth-00.txt", 100000))
+{
+    // 4. Przeprowadzamy analize logów
+    Console.WriteLine($"Downloaded {dataSetIndex}");
+    dataSetIndex++;
+    LogDetector.AnalyzeUserAccountAttacks(batch,10,5);
+}
